@@ -37,7 +37,7 @@ export async function atualizarPersonal(req, res) {
             email: req.body.email,
             senha: req.body.senha,
             genero: req.body.genero,
-            objetivo: req.body.objetivo
+            img: req.body.img
         },
         { where: { id: req.params.id } },
     )

@@ -13,7 +13,7 @@ export async function mostrarAlunos(req, res) {
 
 // CRIAR
 export async function criarAlunos(req, res) {
-const { nome, email, senha, genero, objetivo, img } = req.body;
+    const { nome, email, senha, genero, objetivo, img } = req.body;
 
     if (!nome || !email || !senha || !genero || !objetivo || !img) {
         return res.status(400).json({ erro: "Prencha os campos corretamente" });
@@ -28,7 +28,7 @@ const { nome, email, senha, genero, objetivo, img } = req.body;
         .catch(() => {
             res.status(500).json({ erro: "Erro ao buscar produtos" })
         })
-    }
+}
 
 // Atualizar
 export async function atualizarAluno(req, res) {
@@ -38,7 +38,8 @@ export async function atualizarAluno(req, res) {
             email: req.body.email,
             senha: req.body.senha,
             genero: req.body.genero,
-            objetivo: req.body.objetivo
+            objetivo: req.body.objetivo,
+            img: req.body.img
         },
         { where: { id: req.params.id } },
     )
@@ -56,7 +57,7 @@ export async function atualizarAluno(req, res) {
 
 // Deletar
 export async function deletarAluno(req, res) {
-Aluno.destroy({ where: { id: req.params.id } })
+    Aluno.destroy({ where: { id: req.params.id } })
         .then(linhasAfetadas => {
             if (linhasAfetadas === 0) {
                 return res.status(400).json({ erro: "Aluno não encontrado" })
@@ -66,4 +67,4 @@ Aluno.destroy({ where: { id: req.params.id } })
         .catch(() => {
             res.status(500).json({ erro: "Erro ao deletar aluno" })
         })
-    }
+}
