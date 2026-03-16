@@ -1,9 +1,12 @@
 import { Router } from 'express';
-import { atualizarAluno, mostrarAlunos, criarAlunos, deletarAluno } from '../controllers/AlunoController.js';
+import { atualizarAluno, mostrarAlunos, criarAlunos, deletarAluno, loginAluno } from '../controllers/AlunoController.js';
 const router = Router()
 
 // Rota de criação
 router.post('/cadastro/aluno', criarAlunos)
+
+// Rota de login
+router.post('/login/aluno', loginAluno)
 
 // Rota de Delete
 router.delete('/delete/:id/aluno', deletarAluno)
