@@ -7,19 +7,18 @@ export const Treino = sequelize.define('treinos', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    repeticoes: {
-        type: DataTypes.TEXT,
+    
+    personal_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-    },
-    descanso: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-    },
-    img: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        references: {
+            model: 'personals',
+            key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT',
     },
 });
 
 // Forçar a criação do treino
-Treino.sync({force: false})
+Treino.sync({ force: false });

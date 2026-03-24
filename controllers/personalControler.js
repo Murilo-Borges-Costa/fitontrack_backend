@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 
 // MOSTRAR
 export async function mostrarPersonals(req, res) {
-     Personal.findAll()
+    Personal.findAll()
         .then(personals => {
             res.status(200).json(personals)
         })
@@ -13,7 +13,7 @@ export async function mostrarPersonals(req, res) {
 }
 // CRIAR
 export async function criarPersonal(req, res) {
-const { cref, nome, email, senha, genero, img} = req.body;
+    const { cref, nome, email, senha, genero, img } = req.body;
 
     if (!cref || !nome || !email || !senha || !genero || !img) {
         return res.status(400).json({ erro: "Prencha os campos corretamente" });
@@ -31,7 +31,7 @@ const { cref, nome, email, senha, genero, img} = req.body;
     }
 }
 
-    // Atualizar
+// Atualizar
 export async function atualizarPersonal(req, res) {
     try {
         const hashedSenha = await bcrypt.hash(req.body.senha, 10);
@@ -82,7 +82,8 @@ export async function loginPersonal(req, res) {
 
 // Deletar
 export async function deletarPersonal(req, res) {
-Personal.destroy({ where: { id: req.params.id } })
+   
+    Personal.destroy({ where: { id: req.params.id } })
         .then(linhasAfetadas => {
             if (linhasAfetadas === 0) {
                 return res.status(400).json({ erro: "Personal não encontrado" })
@@ -92,4 +93,4 @@ Personal.destroy({ where: { id: req.params.id } })
         .catch(() => {
             res.status(500).json({ erro: "Erro ao deletar personal" })
         })
-    }
+}

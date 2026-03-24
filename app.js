@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
+import './models/index.js';
 // import alunoRoutes from './routes/aluno.js';
+import exercicioRoutes from './routes/exercicio.js';
 import treinoRoutes from './routes/treino.js'; 
 import alunoRoutes from './routes/aluno.js'; 
 import personalRoutes from './routes/personal.js'; 
@@ -15,6 +17,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // app.use(alunoRoutes);
+app.use(exercicioRoutes);
 app.use(treinoRoutes);
 app.use(alunoRoutes);
 app.use(personalRoutes);

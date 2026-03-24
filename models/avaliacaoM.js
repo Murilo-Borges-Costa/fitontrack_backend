@@ -7,23 +7,15 @@ import { sequelize } from "./banco.js";
 export const Avaliacao = sequelize.define('avaliacoes', {
     id_avaliador: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'alunos', // ou 'personals', mas usaremos associações
-            key: 'id'
-        }
+        allowNull: false
+    },
+    tipo_avaliador: {
+        type: DataTypes.ENUM('Aluno', 'Personal'),
+        allowNull: false
     },
     id_avaliado: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: 'personals', // ou 'alunos'
-            key: 'id'
-        }
-    },
-    tipo_avaliador: {
-        type: DataTypes.ENUM('aluno', 'personal'),
-        allowNull: false,
+        allowNull: false
     },
     nota: {
         type: DataTypes.INTEGER,
@@ -32,7 +24,7 @@ export const Avaliacao = sequelize.define('avaliacoes', {
             min: 1,
             max: 5
         }
-    },
+    }
 });
 
 // Forçar a criação do personal
