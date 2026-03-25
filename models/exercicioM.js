@@ -2,26 +2,14 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "./banco.js";
 
 export const Exercicio = sequelize.define('exercicios', {
-    nome: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    descricao: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-    },
-    grupo_muscular: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    img: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-}, {
-    timestamps: true,
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-});
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
 
-Exercicio.sync({ force: false });
+    nome: { type: DataTypes.STRING, allowNull: false },
+    descricao: { type: DataTypes.TEXT },
+    grupo_muscular_id: { type: DataTypes.INTEGER },
+    imagem: { type: DataTypes.STRING }
+
+}, {
+    tableName: 'exercicios',
+    timestamps: false,
+});

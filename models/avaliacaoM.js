@@ -1,31 +1,19 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "./banco.js";
-// import { Aluno } from "./alunoM.js";
-// import { Personal } from "./personalM.js";
 
-// Criar tabela de avaliações
 export const Avaliacao = sequelize.define('avaliacoes', {
-    id_avaliador: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    tipo_avaliador: {
-        type: DataTypes.ENUM('Aluno', 'Personal'),
-        allowNull: false
-    },
-    id_avaliado: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    nota: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 1,
-            max: 5
-        }
-    }
-});
+    id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
 
-// Forçar a criação do personal
-Avaliacao.sync({ force: false })
+    aluno_id: { type: DataTypes.INTEGER },
+    personal_id: { type: DataTypes.INTEGER },
+
+    avaliador_tipo: { type: DataTypes.ENUM('aluno', 'personal') },
+    avaliador_id: { type: DataTypes.INTEGER },
+
+    nota: { type: DataTypes.INTEGER },
+    comentario: { type: DataTypes.TEXT }
+
+}, {
+    tableName: 'avaliacoes',
+    timestamps: false,
+});

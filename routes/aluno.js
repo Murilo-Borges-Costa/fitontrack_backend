@@ -1,20 +1,37 @@
-import { Router } from 'express';
-import { atualizarAluno, mostrarAlunos, criarAlunos, deletarAluno, loginAluno } from '../controllers/AlunoController.js';
-const router = Router()
+import { Router } from "express";
+import * as controller from "../controllers/alunoController.js";
 
-// Rota de criação
-router.post('/cadastro/aluno', criarAlunos)
+const router = Router();
 
-// Rota de login
-router.post('/login/aluno', loginAluno)
+router.get("/alunos", controller.listar);
+router.get("/alunos/:id", controller.buscarPorId);
+router.post("/alunos", controller.criar);
+router.patch("/alunos/:id", controller.atualizar);
+router.delete("/alunos/:id", controller.deletar);
+router.post("/auth/aluno", controller.login);
 
-// Rota de Delete
-router.delete('/delete/:id/aluno', deletarAluno)
+export default router;
 
-// Rota de Atualização
-router.patch('/atualizar/:id/aluno', atualizarAluno)
+// import { Router } from 'express';
+// import {
+//     atualizarAluno,
+//     mostrarAlunos,
+//     criarAlunos,
+//     deletarAluno,
+//     loginAluno,
+//     buscarAlunoPorId
+// } from '../controllers/AlunoController.js';
 
-// Rota de leitura
-router.get('/aluno', mostrarAlunos)
+// const router = Router();
 
-export default router
+// // CRUD
+// router.post('/alunos', criarAlunos);
+// router.get('/alunos', mostrarAlunos);
+// router.get('/alunos/:id', buscarAlunoPorId);
+// router.patch('/alunos/:id', atualizarAluno);
+// router.delete('/alunos/:id', deletarAluno);
+
+// // LOGIN
+// router.post('/auth/aluno', loginAluno);
+
+// export default router;

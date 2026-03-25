@@ -1,20 +1,37 @@
-import { Router } from 'express';
-import { criarPersonal, deletarPersonal, atualizarPersonal, mostrarPersonals, loginPersonal } from '../controllers/personalControler.js';
-const router = Router()
+import { Router } from "express";
+import * as controller from "../controllers/personalController.js";
 
-// Rota de criação
-router.post('/cadastro/personal', criarPersonal)
+const router = Router();
 
-// Rota de login
-router.post('/login/personal', loginPersonal)
+router.get("/personais", controller.listar);
+router.post("/personais", controller.criar);
+router.patch("/personais/:id", controller.atualizar);
+router.delete("/personais/:id", controller.deletar);
+router.post("/auth/personal", controller.login);
 
-// Rota de Delete
-router.delete('/delete/:id/personal', deletarPersonal)
+export default router;
 
-// Rota de Atualização
-router.patch('/atualizar/:id/personal', atualizarPersonal);
 
-// Rota de leitura
-router.get('/personal', mostrarPersonals)
+// import { Router } from 'express';
+// import {
+//     criarPersonal,
+//     deletarPersonal,
+//     atualizarPersonal,
+//     mostrarPersonais,
+//     loginPersonal,
+//     buscarPersonalPorId
+// } from '../controllers/personalControler.js';
 
-export default router
+// const router = Router();
+
+// // CRUD
+// router.post('/personais', criarPersonal);
+// router.get('/personais', mostrarPersonais);
+// router.get('/personais/:id', buscarPersonalPorId);
+// router.patch('/personais/:id', atualizarPersonal);
+// router.delete('/personais/:id', deletarPersonal);
+
+// // LOGIN
+// router.post('/auth/personal', loginPersonal);
+
+// export default router;
