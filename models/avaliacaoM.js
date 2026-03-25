@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "./banco.js";
+import { sequelize } from "../config/banco.js";
 
 export const Avaliacao = sequelize.define('avaliacoes', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },

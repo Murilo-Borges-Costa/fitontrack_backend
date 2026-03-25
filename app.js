@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
+import { sequelize } from './config/banco.js';
 // IMPORTAR RELACIONAMENTOS
 import './models/associations.js';
 
@@ -29,6 +30,14 @@ app.use(avaliacaoRoutes);
 app.use(treinoExercicioRoutes);
 app.use(execucaoRoutes);
 
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-});
+sequelize.sync({ alter: true })
+    .then(() => {
+        console.log('Sincronização do banco concluída (alter).');
+        app.listen(port, () => {
+            console.log(`Servidor rodando na porta ${port}`);
+        });
+    })
+    .catch((err) => {
+        console.error('Erro ao sincronizar o banco:', err);
+        process.exit(1);
+    });
